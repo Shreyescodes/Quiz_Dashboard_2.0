@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<div style="text-align: right; margin-bottom: 20px;">
+    <a href="{% url 'quiz:logout' %}" class="logout-button">Logout</a>
+</div>
+
+<h3>Pending Quiz Access Requests</h3>
+<ul>
+{% for access in pending_requests %}
+    <li>
+        {{ access.user.username }} - {{ access.quiz_type.name }}
+        <form method="post" action="{% url 'quiz:manage_quiz_access' access.id %}">
+            {% csrf_token %}
+            <button type="submit" name="action" value="approve">Approve</button>
+            <button type="submit" name="action" value="deny">Deny</button>
+        </form>
+    </li>
+{% empty %}
+    <li>No pending requests.</li>
+{% endfor %}
+</ul>
+
+<h2>Uploaded Quiz Files</h2>
+<ul>
+{% for file in quiz_files %}
+    <li>{{ file.quiz_type.name }} - Uploaded by: {{ file.uploaded_by.username }} on {{ file.upload_date }}</li>
+{% empty %}
+    <li>No files uploaded yet.</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'quiz:upload_file' %}">Upload New Quiz File</a>
+{% endblock %}

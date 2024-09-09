@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Quiz Type</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Select a Quiz Type</h1>
+    <div class="type-container">
+        <ul>
+            {% for t_id, quiz_type in types %}
+                <li><a href="{% url 'quiz:display_quiz' t_id quiz_type %}">{{ t_id }} - {{ quiz_type }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

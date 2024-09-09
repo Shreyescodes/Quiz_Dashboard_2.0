@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ quiz_type }} Quiz</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Quiz Question -->
+    <form method="post">
+        {% csrf_token %}
+        <div class="question-options">
+            <h3>{{ question }}</h3>
+            <ul>
+                <li><input type="radio" name="answer" value="{{ options.0 }}"> A. {{ options.0 }}</li>
+                <li><input type="radio" name="answer" value="{{ options.1 }}"> B. {{ options.1 }}</li>
+                <li><input type="radio" name="answer" value="{{ options.2 }}"> C. {{ options.2 }}</li>
+                <li><input type="radio" name="answer" value="{{ options.3 }}"> D. {{ options.3 }}</li>
+            </ul>
+        </div>
+        <!-- Display messages -->
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if is_last_question %}
+            <button type="submit">Submit</button>
+        {% else %}
+            <button type="submit">Next</button>
+        {% endif %}
+    </form>
+</div>
+
+</body>
+</html>

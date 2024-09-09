@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>User Dashboard</h2>
+
+<div style="text-align: right; margin-bottom: 20px;">
+    <a href="{% url 'quiz:logout' %}" class="logout-button">Logout</a>
+</div>
+
+<h3>Available Quizzes</h3>
+<ul>
+{% for quiz_type in available_quiz_types %}
+    <li>
+        {{ quiz_type.name }}
+        <a href="{% url 'quiz:request_quiz_access' quiz_type.id %}">Request Access</a>
+    </li>
+{% empty %}
+    <li>No new quizzes available.</li>
+{% endfor %}
+</ul>
+
+<h3>Pending Quiz Requests</h3>
+<ul>
+{% for access in pending_requests %}
+    <li>{{ access.quiz_type.name }} - Pending approval</li>
+{% empty %}
+    <li>No pending requests.</li>
+{% endfor %}
+</ul>
+
+<h3>Approved Quizzes</h3>
+<ul>
+{% for access in approved_quizzes %}
+    <li><a href="{% url 'quiz:display_quiz' access.quiz_type.id access.quiz_type.name %}">{{ access.quiz_type.name }}</a></li>
+{% empty %}
+    <li>No approved quizzes yet.</li>
+{% endfor %}
+</ul>
+{% endblock %}

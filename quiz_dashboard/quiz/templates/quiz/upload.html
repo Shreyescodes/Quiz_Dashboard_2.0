@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Use the same styles.css -->
+</head>
+<body>
+    <div class="container upload-container">
+        <h1>Upload Your File</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+</body>
+</html> {% endcomment %}
+
+
+
+{% block content %}
+<h2>Upload Quiz File</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
+{% endblock %}
