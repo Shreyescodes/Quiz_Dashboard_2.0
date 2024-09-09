@@ -1,21 +1,24 @@
 # Quiz Dashboard
 
-A dynamic quiz dashboard application built using Python and Django. This application allows users to upload quiz questions via a CSV file, attempt the quiz, and view their score along with incorrectly answered questions.
+A dynamic quiz dashboard application built using Python and Django. This application allows administrators to manage quizzes and users to request access, attempt quizzes, and view their scores.
 
 ## Features
 
-- **CSV Upload**: Upload quiz questions from a CSV file.
-- **Quiz Navigation**: Navigate between questions, highlighting the current question.
-- **Score Calculation**: Calculate scores based on the correct answers.
-- **Incorrect Questions**: Display the incorrectly answered questions and the correct answers.
-- **Responsive UI**: User-friendly and responsive interface with a scrollable question navigation bar.
-- **Dynamic Quiz Types**: Supports quiz categories such as Python, Java, and JavaScript.
+- **User Authentication**: Login and signup functionality for users.
+- **Quiz Access Management**: Users can request access to quizzes, and admins can approve or deny these requests.
+- **CSV Upload**: Admins can upload quiz questions via CSV files.
+- **Quiz Navigation**: Users can navigate between questions with a highlighted current question.
+- **Score Calculation**: Automatic calculation of scores based on correct answers.
+- **Incorrect Questions Review**: Display of incorrectly answered questions with correct answers.
+- **Responsive UI**: User-friendly interface with a scrollable question navigation bar.
+- **Dynamic Quiz Types**: Support for various quiz categories (e.g., Python, Java, JavaScript).
 
 ## Tech Stack
 
 - **Backend**: Django
 - **Frontend**: HTML, CSS
 - **Data Handling**: CSV Parsing
+- **Database**: SQLite (default Django database)
 
 ## Installation
 
@@ -27,61 +30,55 @@ A dynamic quiz dashboard application built using Python and Django. This applica
 ### Setup
 
 1. Clone the repository:
-
-```bash
+   ```bash
    git clone https://github.com/Shreyescodes/quiz-dashboard.git
    cd quiz-dashboard
-```
+   ```
 
-2. Create a virtual environment:
-   Windows
-```bash
-.\env\Scripts\activate
-```
-MacOS/Linux
+2. Create and activate a virtual environment:
+   
+   Windows:
+   ```bash
+   python -m venv env
+   .\env\Scripts\activate
+   ```
+   
+   MacOS/Linux:
+   ```bash
+   python3 -m venv env
+   source env/bin/activate
+   ```
 
-3. Activate the virtual environment:
-
-On Windows:
-```bash
-source env/bin/activate
-```
-
-On macOS/Linux :
-```bash
-source env/bin/activate
-```
-
-4. Install the required dependencies:
-```bash
+3. Install the required dependencies:
+   ```bash
    pip install -r requirements.txt
-```
+   ```
 
-5. Apply migrations:
+4. Apply migrations:
+   ```bash
+   python manage.py migrate
+   ```
 
-```bash
-python manage.py migrate
-```
+5. Run the development server:
+   ```bash
+   python manage.py runserver
+   ```
 
-6. Run the development server:
+6. Open your browser and navigate to `http://127.0.0.1:8000`.
 
-```bash
-python manage.py runserver
-```
+## Usage
 
-Open your browser and navigate to http://127.0.0.1:8000.
+1. **Sign Up/Login**: Create an account or log in to an existing one.
+2. **Request Quiz Access**: Browse available quizzes and request access.
+3. **Admin Approval**: Administrators can approve or deny access requests.
+4. **Upload Quiz (Admin)**: Admins can upload new quizzes via CSV files.
+5. **Attempt Quiz**: Once approved, navigate through the questions to complete the quiz.
+6. **View Results**: After completion, view your score and review incorrect answers.
 
-## Usage:
-
-Upload Quiz Questions: Navigate to the upload page and upload a CSV file containing your quiz questions.
-Select Quiz Type: Choose from the available quiz types.
-Attempt the Quiz: Navigate through the questions, and your progress will be displayed at the top.
-View Your Score: Once you've completed the quiz, view your score along with the incorrectly answered questions.
-
-## Contributing:
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License:
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
